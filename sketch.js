@@ -14,7 +14,7 @@
 let player;
 
 function setup() {
-  new Canvas(windowWidth-50, windowHeight-50);
+  new Canvas(500, 500);
 }
 
 function draw() {
