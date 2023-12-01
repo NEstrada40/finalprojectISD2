@@ -1,16 +1,3 @@
-// let ball;
-
-// function setup() {
-// 	new Canvas(500, 500);
-
-// 	ball = new Sprite();
-// 	ball.diameter = 50;
-// }
-
-// function draw() {
-// 	background('gray');
-// }
-
 let player;
 
 function setup() {
@@ -41,15 +28,3 @@ function spriteMove() {
     if(kb.pressing("s")) player.vel.y = 1;
     if(kb.pressing("d")) player.vel.x = 1;
   }
-
-// function incrementSpeed() {
-//   let speedVarX = 0;
-//   let speedVarY = 0;
-//   if speedVarX <=5 {
-
-//   }
-  
-//   speedVarX
-
-//   speedVarY
-// }
