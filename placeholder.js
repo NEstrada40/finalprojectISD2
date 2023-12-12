@@ -1,30 +1,51 @@
-let player;
-
-function setup() {
-  new Canvas(windowWidth-60,windowHeight-60);
-}
-
-function draw() {
-  background(220);
-
-    fill(0);
-    spriteSpawn();
-    spriteMove();
-  }
-
-
 function spriteSpawn() {
-  if (mouse.presses()) {
-    player = new Sprite(mouse.x, mouse.y, 30, 30)
-    player.vel.x = 0;
-    player.vel.y = 0;
-  }
+  if(playerCount === 0) {
+      player = new Sprite(windowWidth/2, windowHeight/2, 30, 30);
+      playerCount++;
+      player.vel.x = 0;
+      player.vel.y = 0;
+      player.rotationLock = true;
+      player.bounciness = 0;
+}
 }
 
 function spriteMove() {
+  //slow to a stop after being in motion
+    if(player.colliding(floor)) { 
+      if(player.vel.x > 0) {
+      player.vel.x -= speedDrift;
+      }
+      if(player.vel.x < 0) {
+      player.vel.x += speedDrift;
+      }
+     } else if(!player.colliding(floor)) { 
+        if(player.vel.x > 0) {
+        player.vel.x -= speedDrift/3;
+        }
+        if(player.vel.x < 0) {
+        player.vel.x += speedDrift/3;
+        }
+      }
 
-    if(kb.pressing("w")) player.vel.y = -1;
-    if(kb.pressing("a")) player.vel.x = -1;
-    if(kb.pressing("s")) player.vel.y = 1;
-    if(kb.pressing("d")) player.vel.x = 1;
+      //keyboard input 'wasd'
+    if(player.colliding(floor)) {
+      if(kb.presses(" ")) { //up
+        player.vel.y = -6;
+        }
+      }
+
+    if(player.vel.x < maxSpeed && player.vel.x > -maxSpeed) { //so long as player movement is within max speed
+      if(kb.pressing("a")) { //left
+      player.vel.x -= 1;
+      }
+      if(kb.pressing("d")) { //right
+      player.vel.x += 1;
+      }
+    }
+
+    if(kb.pressing('shift')) {
+      maxSpeed = 6;
+    } else {
+      maxSpeed = 3;
+    }
   }
