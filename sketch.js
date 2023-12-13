@@ -33,6 +33,11 @@ function draw() {
     enemies[i].friction = 0.5;
 
     if (player.colliding(enemies[i])) {
+
+      if (!player.vel.x < -10 || !player.vel.x > 10) {
+        player.hp --;
+      }
+
         if(player.vel.x > 10) {
             enemies[i].color = 'white';
             if(player.position.x > enemies[i].position.x) {
@@ -45,11 +50,16 @@ function draw() {
                 enemies[i].vel.x = 200;
             }
          }
-      if(player.vel.x < -10 | player.vel.x > 10) {
+      if(player.vel.x < -10 || player.vel.x > 10) {
         enemies.splice(i, 1);
       }
     }
   }
+  if (player.hp >= 0) {
+    redraw();
+  }
+  player.hp = 100;
+  print (player.hp);
 }
 
 function floorSpawn(x, y, w, h, color) {
@@ -66,6 +76,7 @@ function playerSpawn() {
   player.vel = createVector(0, 0);
   player.rotationLock = true;
   player.bounciness = 0;
+  player.health = 100;
 }
 
 function playerAttack() {
