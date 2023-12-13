@@ -32,15 +32,15 @@ function draw() {
     enemyMove(enemies[i]);
     enemies[i].friction = 0.5;
 
-    if (player.colliding(enemies[i]) && player.vel.x > 10) {
+    if (player.colliding(enemies[i]) && player.vel.x > 10) { // Enemy turns white(dead) when collided with
       enemies[i].color = 'white';
-    if(player.position.x > enemies[i].position.x) {
+    if(player.position.x > enemies[i].position.x) { // Collide with an enemy and remove them via launch
     enemies[i].vel.x = -200;
   }
-  if (player.colliding(enemies[i]) && player.vel.x < 10) {
+  if (player.colliding(enemies[i]) && player.vel.x < 10) { // Enemy turns white(dead) when collided with
     enemies[i].color = 'white';
   }
-  if(player.position.x > enemies[i].position.x) {
+  if(player.position.x > enemies[i].position.x) { // Collide with an enemy and remove them via launch
   enemies[i].vel.x = -200;
   }
 
@@ -82,10 +82,10 @@ function playerAttack() {
 function enemyMove(enemy) {
 //temporary, enemies move left
   if(player.position.x > enemy.position.x) {
-    enemy.vel.x = 2;
+    enemy.vel.x = 4;
   }
   if(player.position.x < enemy.position.x) {
-    enemy.vel.x = -2;
+    enemy.vel.x = -4;
   }
 
 }
