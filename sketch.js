@@ -1,7 +1,6 @@
 let player; // Player Sprite Variable
 let speedDrift = 0.05; // Variable for slowing to a stop after being in movement
 let maxSpeed = 3;
-let spawnTimer = 0;
 let enemies;
 let floors;
 
@@ -21,8 +20,6 @@ function draw() {
   player.color = 'blue';
   playerAttack();
   spriteMove();
-  setInterval(spawnTimer, 1000);
-  
   //each floor will have its properties
   for (let i = 0; i < floors.length; i++) {
     fill(floors[i].color);
@@ -35,23 +32,22 @@ function draw() {
     enemyMove(enemies[i]);
     enemies[i].friction = 0.5;
 
-    if (player.colliding(enemies[i]) && player.vel.x > 10) { // Enemy turns white(dead) when collided with
-      enemies[i].color = 'white';
-    if(player.position.x > enemies[i].position.x) { // Collide with an enemy and remove them via launch
-    enemies[i].vel.x = -200;
-  }
-  if (player.colliding(enemies[i]) && player.vel.x < 10) { // Enemy turns white(dead) when collided with
-    enemies[i].color = 'white';
-  }
-  if(player.position.x > enemies[i].position.x) { // Collide with an enemy and remove them via launch
-  enemies[i].vel.x = -200;
-  }
-
-
-  if(player.position.x < enemies[i].position.x) {
-    enemies[i].vel.x = 200;
-  }
-      enemies.splice(i, 1);
+    if (player.colliding(enemies[i])) {
+        if(player.vel.x > 10) {
+            enemies[i].color = 'white';
+            if(player.position.x > enemies[i].position.x) {
+                enemies[i].vel.x = -200;
+            }
+        }
+        if(player.vel.x < -10) {
+            enemies[i].color = 'white';
+            if(player.position.x < enemies[i].position.x) {
+                enemies[i].vel.x = 200;
+            }
+         }
+      if(player.vel.x < -10 | player.vel.x > 10) {
+        enemies.splice(i, 1);
+      }
     }
   }
 }
@@ -85,10 +81,10 @@ function playerAttack() {
 function enemyMove(enemy) {
 //temporary, enemies move left
   if(player.position.x > enemy.position.x) {
-    enemy.vel.x = 4;
+    enemy.vel.x = 2;
   }
   if(player.position.x < enemy.position.x) {
-    enemy.vel.x = -4;
+    enemy.vel.x = -2;
   }
 
 }
@@ -142,7 +138,6 @@ function spriteMove() {
     player.position.x = windowWidth-1;
   }
 
-  // if player reaches certain velocity, turn red
   if (player.vel.x > 10 || player.vel.x < -10)
   player.color = 'red';
 }
@@ -154,8 +149,3 @@ function keyPressed() {
     enemies.add(enemy);
   }
 }
-
-// function spawnTimer() {
-//   const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
-//   enemies.add(enemy);
-//   }
