@@ -139,6 +139,7 @@ function spriteMove() {
     player.position.x = windowWidth-1;
   }
 
+  // if player reaches certain velocity, turn red
   if (player.vel.x > 10 || player.vel.x < -10)
   player.color = 'red';
 }
