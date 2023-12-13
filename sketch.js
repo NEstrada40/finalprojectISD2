@@ -1,6 +1,7 @@
 let player; // Player Sprite Variable
 let speedDrift = 0.05; // Variable for slowing to a stop after being in movement
 let maxSpeed = 3;
+let spawnTimer = 0;
 let enemies;
 let floors;
 
@@ -20,6 +21,8 @@ function draw() {
   player.color = 'blue';
   playerAttack();
   spriteMove();
+  setInterval(spawnTimer, 1000);
+  
   //each floor will have its properties
   for (let i = 0; i < floors.length; i++) {
     fill(floors[i].color);
@@ -144,10 +147,16 @@ function spriteMove() {
   player.color = 'red';
 }
 
-function keyPressed() {
-  // enemy spawner
-  if (keyCode === 82) { //R
-    const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
-    enemies.add(enemy);
+// function keyPressed() {
+//   // enemy spawner
+//   if (keyCode === 82) { //R
+//     const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
+//     enemies.add(enemy);
+//   }
+// }
+
+function spawnTimer() {
+  const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
+  enemies.add(enemy);
   }
 }
