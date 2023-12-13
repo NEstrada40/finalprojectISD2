@@ -147,16 +147,15 @@ function spriteMove() {
   player.color = 'red';
 }
 
-// function keyPressed() {
-//   // enemy spawner
-//   if (keyCode === 82) { //R
-//     const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
-//     enemies.add(enemy);
-//   }
-// }
-
-function spawnTimer() {
-  const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
-  enemies.add(enemy);
+function keyPressed() {
+  // enemy spawner
+  if (keyCode === 82) { //R
+    const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
+    enemies.add(enemy);
   }
 }
+
+// function spawnTimer() {
+//   const enemy = new Sprite(windowWidth / 2 + 50, windowHeight / 2 - 60, 20, 20);
+//   enemies.add(enemy);
+//   }
