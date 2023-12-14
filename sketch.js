@@ -23,6 +23,9 @@ function draw() {
   player.color = 'blue';
   playerAttack();
   spriteMove();
+  //text for HP
+  text('🌈'player.hp'🌈', windowWidth/2, 50);
+  
 
  //If player dies, restart
   if (player.hp <= 0) {
