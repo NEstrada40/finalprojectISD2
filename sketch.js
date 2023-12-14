@@ -4,7 +4,7 @@ let floors; //floor sprite variable
 let speedDrift = 0.05; // Variable for slowing to a stop after being in movement
 let maxSpeed = 3; //variable for player current max speed;
 let whenDamageWasTaken = -1000; //variable for last time damage was taken
-const damageCooldownStat = 1000; // variable for intervals between damage taken
+const damageCooldownStat = 600; // variable for intervals between damage taken
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
