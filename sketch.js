@@ -24,8 +24,9 @@ function draw() {
   playerAttack();
   spriteMove();
   //text for HP
-  textSize(250);
-  text('🌈'player.hp'🌈', windowWidth/2, 50);
+  textAlign(CENTER);
+  textSize(50);
+  text('🌈'+player.hp+'🌈', player.position.x, player.position.y-50);
   
 
  //If player dies, restart
