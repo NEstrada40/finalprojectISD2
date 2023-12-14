@@ -24,6 +24,7 @@ function draw() {
   playerAttack();
   spriteMove();
   //text for HP
+  textSize(250);
   text('🌈'player.hp'🌈', windowWidth/2, 50);
   
 
